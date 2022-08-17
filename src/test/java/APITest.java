@@ -14,10 +14,4 @@ public class APITest extends BaseRunner {
     public void testResponseContainsSourceURL() {
         Assert.assertTrue(RestAssured.get(getPageAPI("hello")).getBody().asString().contains("sourceUrl"));
     }
-
-    @Test
-    public void testCheckWorkFlow() {
-        int x = 5;
-        Assert.assertEquals(x, 7);
-    }
 }
