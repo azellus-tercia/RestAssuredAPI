@@ -31,6 +31,9 @@ jobs:
       - name: Maven test
         id: test
         run: mvn test
+        env:
+          APP_OPTIONS: token=${{ secrets.INSTATUS_TOKEN }}
+          CI_RUN: true
         continue-on-error: true
 
       - name: Check on failures
