@@ -12,4 +12,11 @@ public class InstatusAPITest extends BaseRunner {
 
         Assert.assertTrue(isNotNull);
     }
+
+    @Test
+    public void testNegativeCI() {
+        int x = 5;
+
+        Assert.assertTrue(x == 6);
+    }
 }
