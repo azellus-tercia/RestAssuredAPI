@@ -1,5 +1,6 @@
 package instatus;
 
+import com.google.gson.reflect.TypeToken;
 import io.restassured.response.Response;
 import runner.BaseRunner;
 
@@ -11,14 +12,19 @@ public final class StatusPage extends BaseRunner<StatusPage> {
 
     private final List<StatusPageResponse> statusPagesResponses;
 
+    public StatusPage() {
+        statusPagesResponses = getGson().fromJson(
+                responseGET(payload).asString(), TypeToken.getParameterized(List.class, StatusPageResponse.class).getType());
+    }
+
 //    public StatusPage() {
 //        statusPagesResponses = getGson().fromJson(
 //                responseGET(payload).asString(), getCollectionsType(StatusPageResponse.class));
 //    }
 //experimental
-    public StatusPage() {
-        statusPagesResponses = getJSON(responseGET(payload));
-    }
+//    public StatusPage() {
+//        statusPagesResponses = getJSON(responseGET(payload));
+//    }
 
     public boolean isResponseReceived() {
         return statusPagesResponses != null;
