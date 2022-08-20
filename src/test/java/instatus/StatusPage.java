@@ -14,7 +14,11 @@ public final class StatusPage extends BaseRunner<StatusPage> {
 
     public StatusPage() {
         statusPagesResponses = getGson().fromJson(
-                responseGET(payload).asString(), StatusPageResponse.class);
+                trims(responseGET(payload).asString()), StatusPageResponse.class);
+    }
+
+    public static String trims(String string) {
+        return string.substring(1, string.length() - 1);
     }
 
 //    public StatusPage() {
