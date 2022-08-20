@@ -18,7 +18,11 @@ public final class StatusPage extends BaseRunner<StatusPage> {
         return statusPagesResponses != null;
     }
 
-    public String getListResponse() {
+    public String getResponseId() {
         return statusPagesResponses.get(0).id;
+    }
+
+    public String getResponseSubdomain() {
+        return statusPagesResponses.get(0).subdomain;
     }
 }

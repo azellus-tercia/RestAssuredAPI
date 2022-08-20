@@ -15,7 +15,7 @@ public class StatusPageTest {
     @Test
     public void testCollections() {
         String response = new StatusPage()
-                .getListResponse();
+                .getResponseId();
 
         Assert.assertEquals(response, "cl707fbr51651b7n1i9sqmkl8");
     }
@@ -23,6 +23,12 @@ public class StatusPageTest {
     @Test
     public void testAssertInChain() {
         new StatusPage()
-                .assertEquals(StatusPage::getListResponse, "cl707fbr51651b7n1i9sqmkl8");
+                .assertEquals(StatusPage::getResponseId, "cl707fbr51651b7n1i9sqmkl8");
+    }
+
+    @Test void testAssertInChainSubdomain() {
+        new StatusPage()
+                .assertEquals(StatusPage::isResponseReceived, true)
+                .assertEquals(StatusPage::getResponseSubdomain, "spaceya");
     }
 }
