@@ -2,12 +2,13 @@ package instatus;
 
 import runner.BaseRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class StatusPage extends BaseRunner<StatusPage> {
     private final String payload = "/v1/pages";
 
-    private final List<StatusPageResponse> statusPagesResponses;
+    private final ArrayList<StatusPageResponse> statusPagesResponses;
 
     public StatusPage() {
         statusPagesResponses = getGson().fromJson(
