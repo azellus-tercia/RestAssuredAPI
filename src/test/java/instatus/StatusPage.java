@@ -1,30 +1,23 @@
 package instatus;
 
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import io.restassured.response.Response;
 import runner.BaseRunner;
 
+import javax.lang.model.element.Element;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class StatusPage extends BaseRunner<StatusPage> {
     private final String payload = "/v1/pages";
 
-    private final StatusPageResponse statusPagesResponses;
+    private final List<StatusPageResponse> statusPagesResponses;
 
     public StatusPage() {
         statusPagesResponses = getGson().fromJson(
-                trims(responseGET(payload).asString()), StatusPageResponse.class);
+                responseGET(payload).getBody().asString(), new TypeToken<ArrayList<StatusPageResponse>>(){}.getType());
     }
-
-    public static String trims(String string) {
-        return string.substring(1, string.length() - 1);
-    }
-
-//    public StatusPage() {
-//        statusPagesResponses = getGson().fromJson(
-//                responseGET(payload).asString(), getCollectionsType(StatusPageResponse.class));
-//    }
 //experimental
 //    public StatusPage() {
 //        statusPagesResponses = getJSON(responseGET(payload));
@@ -35,10 +28,10 @@ public final class StatusPage extends BaseRunner<StatusPage> {
     }
 
     public String getListResponse() {
-        return statusPagesResponses.id;
+        return statusPagesResponses.get(0).id;
     }
 // experimental
     public String getExpResponse() {
-        return statusPagesResponses.id;
+        return statusPagesResponses.get(0).id;
     }
 }
