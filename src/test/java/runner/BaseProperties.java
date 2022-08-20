@@ -1,5 +1,7 @@
 package runner;
 
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -9,6 +11,7 @@ public class BaseProperties {
     private static final String ENV_APP_OPTIONS = "APP_OPTIONS";
 
     private static Properties properties;
+    private static Gson gson;
 
     private static void initProperties() {
         if (properties == null) {
@@ -34,11 +37,20 @@ public class BaseProperties {
         return System.getenv("CI_RUN") != null;
     }
 
+    private static void initGson() {
+        gson = new Gson();
+    }
+
     static {
         initProperties();
+        initGson();
     }
 
     static Properties getProperties() {
         return properties;
+    }
+
+    static Gson getGson() {
+        return gson;
     }
 }
