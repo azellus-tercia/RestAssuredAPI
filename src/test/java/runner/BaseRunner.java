@@ -1,7 +1,9 @@
 package runner;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import instatus.StatusPageResponse;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -25,6 +27,11 @@ public abstract class BaseRunner<Self extends BaseRunner<?>> {
 
     public static Type getCollectionsType(Class<?> typeClass) {
         return TypeToken.getParameterized(List.class, typeClass).getType();
+    }
+
+    // all below this line is experimental
+    public static List<StatusPageResponse> getJSON(Response response) {
+        return response.jsonPath().getList("", StatusPageResponse.class);
     }
 
     public <Value> Self assertEquals(Function<Self, Value> actual, Value expected) {

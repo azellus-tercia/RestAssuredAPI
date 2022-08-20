@@ -9,17 +9,15 @@ import java.util.List;
 public final class StatusPage extends BaseRunner<StatusPage> {
     private final String payload = "/v1/pages";
 
-    private final StatusPageResponse statusPagesResponses;
+    private final List<StatusPageResponse> statusPagesResponses;
 
 //    public StatusPage() {
 //        statusPagesResponses = getGson().fromJson(
 //                responseGET(payload).asString(), getCollectionsType(StatusPageResponse.class));
 //    }
-
+//experimental
     public StatusPage() {
-        statusPagesResponses = getGson().fromJson(
-                responseGET(payload).asString().substring(1, responseGET("/v1/pages").asString().length() - 1),
-                StatusPageResponse.class);
+        statusPagesResponses = getJSON(responseGET(payload));
     }
 
     public boolean isResponseReceived() {
@@ -27,6 +25,10 @@ public final class StatusPage extends BaseRunner<StatusPage> {
     }
 
     public String getListResponse() {
-        return statusPagesResponses.id;
+        return statusPagesResponses.get(0).id;
+    }
+// experimental
+    public String getExpResponse() {
+        return statusPagesResponses.get(0).id;
     }
 }

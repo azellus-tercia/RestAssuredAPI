@@ -25,4 +25,10 @@ public class StatusPageTest {
         new StatusPage()
                 .assertEquals(StatusPage::getListResponse, "cl707fbr51651b7n1i9sqmkl8");
     }
+// experimental
+    @Test
+    public void testTest() {
+        new StatusPage()
+                .assertEquals(StatusPage::getExpResponse, "cl707fbr51651b7n1i9sqmkl8");
+    }
 }
