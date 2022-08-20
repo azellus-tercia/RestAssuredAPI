@@ -12,4 +12,11 @@ public class InstatusAPITest extends BaseRunner {
 
         Assert.assertTrue(isNotNull);
     }
+
+    @Test
+    public void testTest() {
+        boolean isNotNull = responseGET("/v1/pages") != null;
+
+        Assert.assertTrue(isNotNull);
+    }
 }
