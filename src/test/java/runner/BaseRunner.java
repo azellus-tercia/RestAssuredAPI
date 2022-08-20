@@ -7,7 +7,7 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 public abstract class BaseRunner<Self extends BaseRunner<?>> {
@@ -24,12 +24,12 @@ public abstract class BaseRunner<Self extends BaseRunner<?>> {
     }
 
     public static Type getCollectionsType(Class<?> typeClass) {
-        return TypeToken.getParameterized(ArrayList.class, typeClass).getType();
+        return TypeToken.getParameterized(List.class, typeClass).getType();
     }
 
-//    public <Value> Self assertEquals(Function<Self, Value> actual, Value expected) {
-//        Assert.assertEquals(actual.apply((Self)this), expected);
-//
-//        return (Self)this;
-//    }
+    public <Value> Self assertEquals(Function<Self, Value> actual, Value expected) {
+        Assert.assertEquals(actual.apply((Self)this), expected);
+
+        return (Self)this;
+    }
 }

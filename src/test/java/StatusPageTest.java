@@ -19,4 +19,10 @@ public class StatusPageTest {
 
         Assert.assertEquals(response, "cl707fbr51651b7n1i9sqmkl8");
     }
+
+    @Test
+    public void testAssertInChain() {
+        new StatusPage()
+                .assertEquals(StatusPage::getListResponse, "cl707fbr51651b7n1i9sqmkl8");
+    }
 }
