@@ -10,11 +10,11 @@ import java.util.List;
 public final class StatusPage extends BaseRunner<StatusPage> {
     private final String payload = "/v1/pages";
 
-    private final List<StatusPageResponse> statusPagesResponses;
+    private final StatusPageResponse[] statusPagesResponses;
 
     public StatusPage() {
         statusPagesResponses = getGson().fromJson(
-                responseGET(payload).asString(), TypeToken.getParameterized(List.class, StatusPageResponse.class).getType());
+                responseGET(payload).asString(), StatusPageResponse[].class);
     }
 
 //    public StatusPage() {
@@ -31,10 +31,10 @@ public final class StatusPage extends BaseRunner<StatusPage> {
     }
 
     public String getListResponse() {
-        return statusPagesResponses.get(0).id;
+        return statusPagesResponses[0].id;
     }
 // experimental
     public String getExpResponse() {
-        return statusPagesResponses.get(0).id;
+        return statusPagesResponses[0].id;
     }
 }
